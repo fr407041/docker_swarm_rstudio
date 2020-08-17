@@ -42,7 +42,7 @@ networks:
 services:
   rstudio01:
     image: rocker/rstudio:latest
-    hostname: rserver
+    hostname: "docker_{{.Node.Hostname}}-{{.Service.Name}}"
     environment:
       - USER=plz write your account
       - PASSWORD=plz write your password
@@ -76,7 +76,7 @@ docker service ps ID
 
 4. You have successful deploy each worker with only one rstudio service by Parameter `mode: global`
 
-* Note: mode cannot be `replicated`, it will result conflict if two replicate in the same worker node.
+* Note: mode cannot be `replicated`, it will result conflict if two replicate in the same worker node. (As below)
 
 ![](https://i.imgur.com/Dl9h550.png)
 
