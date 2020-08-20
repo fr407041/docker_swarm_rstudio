@@ -44,12 +44,15 @@ services:
     image: rocker/rstudio:latest
     hostname: "docker_{{.Node.Hostname}}-{{.Service.Name}}"
     environment:
-      - USER=plz write your account
       - PASSWORD=plz write your password
     ports:
-      - 8788:8787
+      - target: 8787
+        published: 8788
+        protocol: tcp
+        mode: host  
     deploy:
       mode: global
+      endpoint_mode: dnsrr 
       placement:
         constraints:
           - node.role == worker   
@@ -76,7 +79,13 @@ docker service ps ID
 
 4. You have successful deploy each worker with only one rstudio service by Parameter `mode: global`
 
-* Note: mode cannot be `replicated`, it will result conflict if two replicate in the same worker node. (As below)
+* Note: mode cannot be `replicated`, it will result conflict if two replicates are in the same worker node(As below). In addition, deploy must add parameter `endpoint_mode: dnsrr` and port setting must write as below.
+```
+- target: 8787
+  published: 8788
+  protocol: tcp
+  mode: host  
+```
 
 ![](https://i.imgur.com/Dl9h550.png)
 
