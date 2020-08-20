@@ -1,5 +1,8 @@
 Docker Swarm Cluster Rstudio
 ==
+
+
+[![hackmd-github-sync-badge](https://hackmd.io/vOv3_xPrSNihH39_kR8ZKQ/badge)](https://hackmd.io/vOv3_xPrSNihH39_kR8ZKQ)
 ### Index
 
 1. [Build docker swarm cluster](#docker_swarm)
@@ -79,7 +82,7 @@ docker service ps ID
 
 4. You have successful deploy each worker with only one rstudio service by Parameter `mode: global`
 
-* Note: mode cannot be `replicated`, it will result conflict if two replicates are in the same worker node(As below). In addition, deploy must add parameter `endpoint_mode: dnsrr` and port setting must write as below.
+* Note: mode cannot be `replicated`, it will result conflict if two replicates are in the same worker node(As below). In addition, deploy must add parameter `endpoint_mode: dnsrr` and port setting must write as.
 ```
 - target: 8787
   published: 8788
